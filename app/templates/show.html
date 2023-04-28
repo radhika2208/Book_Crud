@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-image: url(https://imageio.forbes.com/specials-images/imageserve/63986034dfa1b6bcd37ab5e1/0x0.jpg?format=jpg&width=1200);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            margin: 50px auto;
+            width: 80%;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
+        a:hover {
+            color: #2980b9;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+    <title>Display Data</title>
+</head>
+<body>
+    <h2 style="background-color: rgba(255, 255, 255, 0.8); padding: 10px;"> Books Details </h2>
+    <table>
+        <tr>
+            <th>Name of book</th>
+            <th>Book price</th>
+            <th>Authors name</th>
+            <th>Author phone</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for val in book %}
+        <tr>
+            <td>{{val.name_of_book}}</td>
+            <td>{{val.book_price}}</td>
+            <td>{{val.authors_name}}</td>
+            <td>{{val.author_phone}}</td>
+            <td><a href="{% url 'update' val.id %}">Update</a></td>
+            <td><a href="{% url 'delete' pk=val.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

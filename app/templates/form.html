@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Details</title>
+    <style>
+        body {
+            background-image: url('https://imageio.forbes.com/specials-images/imageserve/63986034dfa1b6bcd37ab5e1/0x0.jpg?format=jpg&width=1200');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        form {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0px 0px 10px #ccc;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.5s ease-out;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+   <form id="book-form" action="{% url 'index' %}" method="post">
+    <h2> Book Details </h2>
+    {% csrf_token %}
+    <label for="id_name_of_book">Name of Book:</label>
+    {{ form.name_of_book }}
+    <label for="id_book_price">Book Price:</label>
+    {{ form.book_price }}
+    <label for="id_authors_name">Author's Name:</label>
+    {{ form.authors_name }}
+    <label for="id_author_phone">Author's Phone:</label>
+    {{ form.author_phone }}
+    <button type="submit">Submit</button>
+   </form>
+   <script>
+      const form = document.getElementById('book-form');
+      const bookPriceInput = form.querySelector('input[name="book_price"]');
+      const authorPhoneInput = form.querySelector('input[name="author_phone"]');
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      submitBtn.addEventListener('click', (event) => {
+          event.preventDefault();
+
+          // Validate book price
+          const bookPrice = bookPriceInput.value.trim();
+            if (!/^\d+$/.test(bookPrice)) {
+                alert('Book price must contain only numbers');
+                return;
+            }
+          // Validate author's phone
+          if (!/^\d{10}$/.test(authorPhoneInput.value)) {
+              alert('Author\'s phone must contain 10 digits only');
+              return;
+          }
+
+          // Submit the form if all fields are valid
+          form.submit();
+      });
+   </script>
+</body>
+</html>
