@@ -1,12 +1,8 @@
-from django.shortcuts import render, redirect
-from django.views import View
 from rest_framework import viewsets
 from rest_framework.response import Response
-import requests
 from rest_framework import status
 from .models import Book
 from .serializer import  CreateBookSerializer,UpdateBookSerializer
-from .form import BookForm
 from.constants import *
 from .messages import *
 class BookViewSet(viewsets.ModelViewSet):
