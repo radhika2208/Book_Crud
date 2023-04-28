@@ -17,9 +17,4 @@ router.register('Book', views.BookViewSet, basename='Books')
 
 urlpatterns = [
     path('root/', include(router.urls)),
-    path('', views.add_books, name='index'),
-    path('show/', views.show_books, name='show'),
-    path('retrieve/<int:pk>', views.retrieve_books, name='retrieve'),
-    path('update/<int:pk>', views.update_books, name='update'),
-    path('delete/<int:pk>', views.delete_books, name='delete')
     ]
